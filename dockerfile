@@ -1,5 +1,8 @@
 FROM php:8.4-fpm
 # Install system packages
+
+
+RUN apt-get update && apt-get install -y nginx
 RUN apt-get update && apt-get install -y \
     git \
     curl \
@@ -50,7 +53,6 @@ RUN php artisan view:cache || true
 
 COPY docker/nginx/default.conf /etc/nginx/sites-available/default
 
-apt-get install -y nginx
 
 COPY docker/start.sh /start.sh
 RUN chmod +x /start.sh

@@ -120,7 +120,7 @@
   'app' => 
   array (
     'name' => 'Laravel',
-    'env' => 'production',
+    'env' => 'local',
     'debug' => false,
     'url' => 'http://ineski.test',
     'frontend_url' => 'http://localhost:3000',
@@ -256,7 +256,7 @@
   ),
   'cache' => 
   array (
-    'default' => 'database',
+    'default' => 'file',
     'stores' => 
     array (
       'array' => 

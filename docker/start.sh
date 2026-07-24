@@ -1,5 +1,10 @@
-#!/bin/bash
+#!/bin/sh
+set -e
+
+php artisan storage:link || true
+php artisan config:clear || true
+php artisan cache:clear || true
+php artisan package:discover --ansi || true
 
 php-fpm -D
-
-nginx -g "daemon off;"
+exec nginx -g "daemon off;"

@@ -51,7 +51,6 @@ RUN composer install \
     --prefer-dist \
     --no-interaction \
     --optimize-autoloader \
-    --no-scripts
 
 RUN npm install
 RUN npm run build

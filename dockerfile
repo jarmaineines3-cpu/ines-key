@@ -1,6 +1,16 @@
 FROM php:8.4-fpm
 # Install system packages
 
+RUN apt-get update && apt-get install -y \
+    curl \
+    ca-certificates
+
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
+    && apt-get install -y nodejs
+
+RUN node -v
+RUN npm -v
+
 
 RUN apt-get update && apt-get install -y nginx
 RUN apt-get update && apt-get install -y \

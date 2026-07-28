@@ -10,6 +10,9 @@ Route::get('/', function () {
 Route::get('/purchases/{purchase}/pdf', [PurchasePdfController::class, 'export'])
     ->name('purchases.pdf');
 
+Route::get('/purchases/{purchase}/apr/pdf', [PurchasePdfController::class, 'viewAPR'])
+    ->name('purchases.apr.pdf');
+
 Route::get('/purchases/{purchase}/po/pdf', [PurchasePdfController::class, 'viewPO'])
     ->name('purchases.po.pdf');
 

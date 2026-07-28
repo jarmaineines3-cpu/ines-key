@@ -14,57 +14,57 @@ class SchoolPolicy
     
     public function viewAny(AuthUser $authUser): bool
     {
-        return $authUser->can('view_any_school');
+        return $authUser->can('view_any:school');
     }
 
     public function view(AuthUser $authUser, School $school): bool
     {
-        return $authUser->can('view_school');
+        return $authUser->can('view:school');
     }
 
     public function create(AuthUser $authUser): bool
     {
-        return $authUser->can('create_school');
+        return $authUser->can('create:school');
     }
 
     public function update(AuthUser $authUser, School $school): bool
     {
-        return $authUser->can('update_school');
+        return $authUser->can('update:school');
     }
 
     public function delete(AuthUser $authUser, School $school): bool
     {
-        return $authUser->can('delete_school');
+        return $authUser->can('delete:school');
     }
 
     public function restore(AuthUser $authUser, School $school): bool
     {
-        return $authUser->can('restore_school');
+        return $authUser->can('restore:school');
     }
 
     public function forceDelete(AuthUser $authUser, School $school): bool
     {
-        return $authUser->can('force_delete_school');
+        return $authUser->can('force_delete:school');
     }
 
     public function forceDeleteAny(AuthUser $authUser): bool
     {
-        return $authUser->can('force_delete_any_school');
+        return $authUser->can('force_delete_any:school');
     }
 
     public function restoreAny(AuthUser $authUser): bool
     {
-        return $authUser->can('restore_any_school');
+        return $authUser->can('restore_any:school');
     }
 
     public function replicate(AuthUser $authUser, School $school): bool
     {
-        return $authUser->can('replicate_school');
+        return $authUser->can('replicate:school');
     }
 
     public function reorder(AuthUser $authUser): bool
     {
-        return $authUser->can('reorder_school');
+        return $authUser->can('reorder:school');
     }
 
 }

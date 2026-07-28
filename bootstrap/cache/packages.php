@@ -210,6 +210,13 @@
       0 => 'Livewire\\LivewireServiceProvider',
     ),
   ),
+  'nativephp/mobile' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Native\\Mobile\\NativeServiceProvider',
+    ),
+  ),
   'nesbot/carbon' => 
   array (
     'providers' => 

@@ -6,6 +6,7 @@ use App\Filament\Resources\Employees\Pages\CreateEmployee;
 use App\Filament\Resources\Employees\Pages\EditEmployee;
 use App\Filament\Resources\Employees\Pages\ListEmployees;
 use App\Filament\Resources\Employees\Pages\ViewEmployee;
+use App\Filament\Resources\Employees\RelationManagers\LeavesRelationManager;
 use App\Filament\Resources\Employees\RelationManagers\PositionsRelationManager;
 use App\Filament\Resources\Employees\Schemas\EmployeeForm;
 use App\Filament\Resources\Employees\Schemas\EmployeeInfolist;
@@ -45,6 +46,7 @@ class EmployeeResource extends Resource
         return [
             RelationManagers\SchoolsRelationManager::class,
             PositionsRelationManager::class,
+            LeavesRelationManager::class,
         ];
     }
 

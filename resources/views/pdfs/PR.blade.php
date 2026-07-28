@@ -6,7 +6,7 @@
     <title>Purchase Request {{ $purchase->pr_no }}</title>
     <style>
         body { margin: 0 20px; font-family: Arial, sans-serif; font-size: 12px; color: #111; }
-        table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 0; }
         .container-table { border: 1px solid #888; }
         .container-table td,
         .header-table td,
@@ -62,7 +62,9 @@
                 <strong>Responsibility Center Code:</strong> <u>{{ $purchase->rc_code }}</u>
             </td>
             <td colspan="2">
-                <strong>Date:</strong> {{ $purchase->pr_date ? \Illuminate\Support\Carbon::parse($purchase->pr_date)->format('m/d/Y') : '' }}
+                <strong>Date:</strong> 
+                __________________
+                {{-- {{ $purchase->pr_date ? \Illuminate\Support\Carbon::parse($purchase->pr_date)->format('m/d/Y') : '' }} --}}
             </td>
         </tr>
         <tr>
@@ -134,7 +136,7 @@
     <div class="page-break"></div>
 
     <br>
-    <table class="metadata-table" style="margin-bottom: 0.5rem;">
+    <table class="metadata-table" style="margin-bottom: 0.5rem; font-size: 10px;">
         <tr>
             <td style="width: 50%;">
                 Name of Procuring Entity: <strong>{{ strtoupper(optional($purchase->schoolRelation)->school_name ?? $purchase->school) }}</strong>
@@ -147,9 +149,7 @@
         </tr>
     </table>
 
-    <br>
     <div class="title">REQUEST FOR QUOTATION</div>
-    <br>
 
     <table class="metadata-table" style="margin-bottom: 0.5rem; font-size: 11px;">
         <tr>
@@ -157,28 +157,29 @@
                 Standard Form Number: SF-GOOD-60Revised on May 24, 2004 <br>
                 Standard Form Title: Request for Quotation <br>
             </td>
-            <td style="width: 30%; font-size: 13px;">
-                Date: <u>{{ $purchase->pr_date ? \Illuminate\Support\Carbon::parse($purchase->pr_date)->format('m/d/Y') : '' }} </u><br>
+            <td style="width: 30%; font-size: 11px;">
+                Date: ___________________
+                {{-- <u>{{ $purchase->pr_date ? \Illuminate\Support\Carbon::parse($purchase->pr_date)->format('m/d/Y') : '' }} </u> --}}
+                <br>
                 Quoatation No: ___________
             </td>
         </tr>
-        <br>
         <tr>
             <td colspan="2">
-                <strong>Supplier Name:</strong> ____________________________________ <br>
+                <strong>Supplier:</strong> ____________________________________ 
                 <br>
-                <strong>Address:</strong> __________________________________________ <br>
+                <strong>Address:</strong> _________________________________________ <br>
             </td>
         </tr>
     </table>
-    <p class="justified-paragraph">
+    <p class="justified-paragraph" style="font-size: 10px;">
         Please quote your lowest price on the item/s listed below, subject to general terms and conditions. stating the shortest time of delivery and submit your quotation duly signed by your representative not later than __________ at 5:00 PM in the return envelope attached herewith.
     </p>
     <table class="metadata-table" style="margin-bottom: 0.5rem; font-size: 11px;">
         <tr>
             <td style="width: 70%;">
             </td>
-            <td style="width: 30%; font-size: 12px;" class="center">
+            <td style="width: 30%; font-size: 11px;" class="center">
                 <u><strong>{{ strtoupper(optional(optional(optional($purchase->schoolRelation)->bacMembers()->where('role', 'chairperson')->first())->employee)->full_name ?? '______________________') }}</strong></u> 
                 <br>
                 BAC Chairperson/Procurement Officer
@@ -186,9 +187,9 @@
         </tr>
     </table>
 
-    <table>
+    <table style="width: 100%; border-collapse: collapse; border: none; padding: 0; margin: 0;">
         <tr>
-            <td style="width: 10px;">
+            <td style="width: 11px;">
                 Note:
             </td>
             <td style="padding: 0;">
@@ -203,10 +204,10 @@
             </td>
         </tr>
     </table>
-
-    <table class="container-table">
-        <tr>
-            <td style="width: 5px;" class="center">
+    <br>
+    <table style="font-size: 11px; padding: 2px; margin: 2px; border-collapse: collapse; border: 1px solid #000000; width: 100%;">
+        <tr style="border: 1px solid #000000; background-color: #c6c6c6;" class="center">
+            <td style="width: 5px;" class="center; border: 1px solid #000000;">
                 <strong>No.</strong>
             </td>
             <td>
@@ -223,20 +224,20 @@
             </td>
         </tr>
         @foreach($purchase->purchaseItems as $item)
-            <tr>
-                <td class="center">{{ $loop->iteration }}</td>
-                <td>{{ $item->item_name }}</td>
-                <td class="center">{{ $item->item_quantity }}</td>
-                <td></td>
-                <td></td>
+            <tr style="height: 50px; border: 1px solid #000000;">
+                <td class="center" style="border: 1px solid">{{ $loop->iteration }}</td>
+                <td style="border: 1px solid;"> &nbsp; {{ $item->item_name }}</td>
+                <td class="center" style="border: 1px solid">{{ $item->item_quantity }}</td>
+                <td style="border: 1px solid"></td>
+                <td style="border: 1px solid"></td>
             </tr>
         @endforeach
         <tfoot>
             <tr>
-                <td colspan="5" style="text-align: center; font-weight: bold;">***Nothing follows***</td>
+                <td colspan="5" style="text-align: center; font-weight: bold; border: 1px solid">***Nothing follows***</td>
             </tr>
             <tr>
-                <td colspan="4" style="text-align: right; font-weight: bold;">Total:</td>
+                <td colspan="4" style="text-align: right; font-weight: bold; border: 1px solid; font-size: 12px;">Total:</td>
                 <td></td>
             </tr>
         </tfoot>
@@ -246,11 +247,11 @@
         After having carefully read and accepted the general conditions on the reverse, I/we quote you on the item at prices noted above.
     </p>
 
-    <table class="metadata-table" style="margin-bottom: 0.5rem; font-size: 11px;">
+    <table class="metadata-table" style="margin-bottom: 0.5rem; font-size: 10px;">
         <tr>
             <td style="width: 70%;">
             </td>
-            <td style="width: 30%; font-size: 12px;" class="center">
+            <td style="width: 30%; font-size: 10px;" class="center">
                 <br>
                 ___________________________________
                 <br>
@@ -268,191 +269,6 @@
             </td>
         </tr>
     </table>
-
-    <div class="page-break"></div>
-
-    <br>
-    <table class="metadata-table" style="margin-bottom: 0rem; font-size: 11px;">
-        <tr style="background-color: #eed997;">
-            <td style="width: 50%;">
-                APR FORM revised August 2015
-            </td>
-            <td style="width: 50%;text-align: right;">
-                FORM NO. 003 
-            </td>
-        </tr>
-    </table>
-    <table class="container-table" style="font-size: 10px; border: 2px solid #000000; ">
-        <tr>
-            <td rowspan="3" style="width: 20%;">
-                <strong>NAME AND ADDRESS OF REQUESTING AGENCY:
-            </td>
-            <td rowspan="3">
-                </strong> {{ strtoupper(optional($purchase->schoolRelation)->school_name ?? $purchase->school) }}
-                <br>
-                </strong> {{ strtoupper(optional($purchase->schoolRelation)->school_address ?? $purchase->school) }}
-                <br>
-                </strong> {{ strtoupper(optional($purchase->schoolRelation)->school_contact ?? $purchase->school) }}
-            </td>
-            <td>
-                AGENCY ACCT. CODE:
-            </td>
-        </tr>
-        <tr>
-            <td>
-                AGENCY CONTROL NO.:
-            </td>
-        </tr>
-        <tr>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" style="text-align: center; font-size: 13px; font-weight: bold;">
-                AGENCY PROCUREMENT REQUEST
-            </td>
-            <td >
-                PS APR NO.: {{ $purchase->pr_no }}
-            </td>
-        </tr>
-        <tr>
-            <td colspan="3">
-                <table style="width: 100%; border-collapse: collapse; border: none; padding: 0; margin: 0;">
-                    <tr>
-                        <td style="border: none; padding: 0; width: 70%;">
-                            To: PROCUREMENT SERVICE <br>
-                            DBM Compound, RR Road <br>
-                            Cristobal St., Paco, Manila
-                        </td>
-                        <td style="border: none; padding: 0; text-align: center;">
-                            <u>{{ $purchase->pr_date ? \Illuminate\Support\Carbon::parse($purchase->pr_date)->format('m/d/Y') : '' }}</u>
-                            <br>Date Prepared
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" style="border: none; padding: 0;">
-                            <br>
-                            <strong>PLEASE CHECK ( / ) APPROPRIATE BOX ON ACTION REQUESTED ON THE ITEM/S LISTED BELOW</strong>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" style="border: none; padding: 0; font-size: 10px;">
-                            <br>
-                            [ / ] Please  issue common-use supplies/materials per Price List No. _____________________ dated ______________
-                            <br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mode of delivery: [&nbsp;&nbsp;&nbsp;&nbsp;] Pick-up (fast lane) [&nbsp;&nbsp;&nbsp;&nbsp;] Pick-up (Schedule) [ / ] Delivery (door-to-door)
-                            <br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;in case fund is not sufficient: [&nbsp;&nbsp;&nbsp;&nbsp;] Reduce Quantity  [&nbsp;&nbsp;&nbsp;&nbsp;] Bill Us    [&nbsp;&nbsp;&nbsp;&nbsp;] Charge to Unitilized Deposit, APR/OR No. ______ Date: ______
-                            <br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;in case item is not available: [&nbsp;&nbsp;&nbsp;&nbsp;] Issue CNAS     [&nbsp;&nbsp;&nbsp;&nbsp;] Item for Replacement
-                            <br>
-                            <br>
-                            [&nbsp;&nbsp;&nbsp;&nbsp;] purchase for our agency non-common items. Attached herewith : 
-                            <br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;&nbsp;&nbsp;&nbsp;] Complete Specifications  [&nbsp;&nbsp;&nbsp;&nbsp;] Obligation Request (ObR) [&nbsp;&nbsp;&nbsp;&nbsp;] Copy of APP [&nbsp;&nbsp;&nbsp;&nbsp;] Others, pls. specify: _________________
-                            <br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;&nbsp;&nbsp;&nbsp;] Certificate of Budget Allocation (CBA) [&nbsp;&nbsp;&nbsp;&nbsp;] Payment __________________
-                            <br>
-                            <br>
-                            [&nbsp;&nbsp;&nbsp;&nbsp;] Purchase of ITEMS ON SALE (IOS) in PS Main, Depots and Sub-Depots
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="3" style="padding: 0;">
-                <table class="container-table" style="padding: 0; margin: 0;">
-                    <tr>
-                        <td style="width: 5px;" class="center">
-                            <strong>No.</strong>
-                        </td>
-                        <td style="width: 300px;">
-                            <strong>Item Description</strong>
-                        </td>
-                        <td style="width: 5px;" class="center">
-                            <strong>Quantity</strong>
-                        </td>
-                        <td>
-                            <strong>Unit</strong>
-                        </td>
-                        <td>
-                            <strong>Unit Price</strong>
-                        </td>
-                        <td>
-                            <strong>Amount</strong>
-                        </td>
-                    </tr>
-                    @php
-                        $lineCount = max($purchase->purchaseItems->count(), 21);
-                    @endphp
-                    @for ($i = 0; $i < $lineCount; $i++)
-                        @php $item = $purchase->purchaseItems->get($i); @endphp
-                        <tr>
-                            <td style="height: 20px; padding: 0; margin: 0;" class="center">{{ $item ? $i + 1 : '' }}</td>
-                            <td>{{ $item?->item_name ?? '' }}</td>
-                            <td class="center">{{ $item?->item_quantity ?? '' }}</td>
-                            <td>{{ $item?->item_unit ?? '' }}</td>
-                            <td style="text-align: right;">{{ $item ? number_format($item->item_unit_price, 2) : '' }}</td>
-                            <td style="text-align: right;">{{ $item ? number_format($item->item_unit_price * $item->item_quantity, 2) : '' }}</td>
-                        </tr>
-                    @endfor
-                    <tfoot>
-                        <tr>
-                            <td colspan="5" style="text-align: right; font-weight: bold;">Total Amount:  </td>
-                            <td style="text-align: right;"> <strong>{{ number_format($purchase->purchaseItems->sum(fn($item) => $item->item_unit_price * $item->item_quantity), 2) }}</strong></td>
-                        </tr>
-                    </tfoot>
-                </table>
-                <table style="width: 100%; border-collapse: collapse; border: none; padding: 0; margin: 0;">
-                    <tr>
-                        <td colspan="3" class="center" style="padding: 0; font-size: 10px;">
-                            <strong>NOTE: ALL SIGNATURES MUST BE OVER PRINTED NAME</strong>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="center" style="padding: 1; font-size: 10px; width: 33%;">
-                            <div    style="text-align: left;">STOCKS REQUESTED ARE CERTIFIED TO BE WITHIN APPROVED PROGRAM:</div>
-                            <br>
-                            <br>
-                            <br>
-                            <u><strong>{{ strtoupper(optional($purchase->requester)->full_name ?? $purchase->requested_by) }}</strong></u>
-                            <br>AGENCY PROPERTY/SUPPLY OFFICER
-                        </td>
-                        <td class="center" style="padding: 0; font-size: 10px;">
-                            <div style="text-align: left;">FUNDS CERTIFIED AVAILABLE:</div>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <u><strong>{{ strtoupper(optional($purchase->seniorBookkeeper)->full_name ?? $purchase->senior_bookkeeper_name ?? '______________________') }}</strong></u>
-                            <br>AGENY CHIEF ACCOUNTANT
-                        </td>
-                        <td class="center" style="padding: 0; font-size: 10px; width: 33%;">
-                            <div style="text-align: left;">APPROVED:</div>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <u><strong>{{ strtoupper(optional($purchase->approver)->full_name ?? $purchase->approved_by) }}</strong></u>
-                            <br>AGENCY HEAD/AUTHORIZED SIGNATURE
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="3">
-                            <div style="padding: 10;">
-                                [&nbsp;&nbsp; ] FUNDS DEPOSITED WITH PS _______________________ [&nbsp;&nbsp; ] CHECK No. _______________
-                                <br>
-                                &nbsp;&nbsp;&nbsp; IN THE AMOUNT OF ___________________________ (P _____________________) ENCLOSED
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
-
 
 </body>
 </html>

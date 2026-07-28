@@ -14,57 +14,57 @@ class PurchasePolicy
     
     public function viewAny(AuthUser $authUser): bool
     {
-        return $authUser->can('view_any_purchase');
+        return $authUser->can('view_any:purchase');
     }
 
     public function view(AuthUser $authUser, Purchase $purchase): bool
     {
-        return $authUser->can('view_purchase');
+        return $authUser->can('view:purchase');
     }
 
     public function create(AuthUser $authUser): bool
     {
-        return $authUser->can('create_purchase');
+        return $authUser->can('create:purchase');
     }
 
     public function update(AuthUser $authUser, Purchase $purchase): bool
     {
-        return $authUser->can('update_purchase');
+        return $authUser->can('update:purchase');
     }
 
     public function delete(AuthUser $authUser, Purchase $purchase): bool
     {
-        return $authUser->can('delete_purchase');
+        return $authUser->can('delete:purchase');
     }
 
     public function restore(AuthUser $authUser, Purchase $purchase): bool
     {
-        return $authUser->can('restore_purchase');
+        return $authUser->can('restore:purchase');
     }
 
     public function forceDelete(AuthUser $authUser, Purchase $purchase): bool
     {
-        return $authUser->can('force_delete_purchase');
+        return $authUser->can('force_delete:purchase');
     }
 
     public function forceDeleteAny(AuthUser $authUser): bool
     {
-        return $authUser->can('force_delete_any_purchase');
+        return $authUser->can('force_delete_any:purchase');
     }
 
     public function restoreAny(AuthUser $authUser): bool
     {
-        return $authUser->can('restore_any_purchase');
+        return $authUser->can('restore_any:purchase');
     }
 
     public function replicate(AuthUser $authUser, Purchase $purchase): bool
     {
-        return $authUser->can('replicate_purchase');
+        return $authUser->can('replicate:purchase');
     }
 
     public function reorder(AuthUser $authUser): bool
     {
-        return $authUser->can('reorder_purchase');
+        return $authUser->can('reorder:purchase');
     }
 
 }

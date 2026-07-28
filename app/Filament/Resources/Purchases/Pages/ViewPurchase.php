@@ -15,8 +15,14 @@ class ViewPurchase extends ViewRecord
     {
         return [
             Action::make('viewPr')
-                ->label('PR/RFQ/APR')
+                ->label('PR/RFQ')
                 ->url(fn (): string => route('purchases.pdf', ['purchase' => $this->getRecord()]))
+                ->icon('heroicon-o-document-text')
+                ->openUrlInNewTab()
+                ->visible(fn (): bool => $this->getRecord()?->purchaseItems()->exists() ?? false),
+            Action::make('viewAPR')
+                ->label('APR')
+                ->url(fn (): string => route('purchases.apr.pdf', ['purchase' => $this->getRecord()]))
                 ->icon('heroicon-o-document-text')
                 ->openUrlInNewTab()
                 ->visible(fn (): bool => $this->getRecord()?->purchaseItems()->exists() ?? false),

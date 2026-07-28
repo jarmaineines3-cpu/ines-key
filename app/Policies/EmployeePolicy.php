@@ -14,57 +14,57 @@ class EmployeePolicy
     
     public function viewAny(AuthUser $authUser): bool
     {
-        return $authUser->can('view_any_employee');
+        return $authUser->can('view_any:employee');
     }
 
     public function view(AuthUser $authUser, Employee $employee): bool
     {
-        return $authUser->can('view_employee');
+        return $authUser->can('view:employee');
     }
 
     public function create(AuthUser $authUser): bool
     {
-        return $authUser->can('create_employee');
+        return $authUser->can('create:employee');
     }
 
     public function update(AuthUser $authUser, Employee $employee): bool
     {
-        return $authUser->can('update_employee');
+        return $authUser->can('update:employee');
     }
 
     public function delete(AuthUser $authUser, Employee $employee): bool
     {
-        return $authUser->can('delete_employee');
+        return $authUser->can('delete:employee');
     }
 
     public function restore(AuthUser $authUser, Employee $employee): bool
     {
-        return $authUser->can('restore_employee');
+        return $authUser->can('restore:employee');
     }
 
     public function forceDelete(AuthUser $authUser, Employee $employee): bool
     {
-        return $authUser->can('force_delete_employee');
+        return $authUser->can('force_delete:employee');
     }
 
     public function forceDeleteAny(AuthUser $authUser): bool
     {
-        return $authUser->can('force_delete_any_employee');
+        return $authUser->can('force_delete_any:employee');
     }
 
     public function restoreAny(AuthUser $authUser): bool
     {
-        return $authUser->can('restore_any_employee');
+        return $authUser->can('restore_any:employee');
     }
 
     public function replicate(AuthUser $authUser, Employee $employee): bool
     {
-        return $authUser->can('replicate_employee');
+        return $authUser->can('replicate:employee');
     }
 
     public function reorder(AuthUser $authUser): bool
     {
-        return $authUser->can('reorder_employee');
+        return $authUser->can('reorder:employee');
     }
 
 }

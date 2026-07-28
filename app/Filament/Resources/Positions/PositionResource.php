@@ -9,6 +9,7 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -32,6 +33,9 @@ class PositionResource extends Resource
                     ->required(),
                 TextInput::make('salary_grade')
                     ->required(),
+                Checkbox::make('teaching')
+                    ->label('Teaching')
+                    ->default(false),
             ]);
     }
 

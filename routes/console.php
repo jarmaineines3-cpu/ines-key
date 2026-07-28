@@ -12,3 +12,4 @@ Artisan::command('inspire', function () {
 
 Schedule::command('db:backup-sqlite')->dailyAt('08:30')->timezone('Asia/Manila');
 Schedule::command('db:backup-sqlite')->dailyAt('15:00')->timezone('Asia/Manila');
+Schedule::command('leave:assign-wellness-credits {--year=}')->daily();

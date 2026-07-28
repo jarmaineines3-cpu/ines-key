@@ -54,6 +54,11 @@ class Employee extends Model
     {
         return $this->hasMany(BACMember::class);
     }
+
+    public function leaves()
+    {
+        return $this->hasMany(Leave::class);
+    }
     
     public function getSalaryStepAttribute(): int
     {

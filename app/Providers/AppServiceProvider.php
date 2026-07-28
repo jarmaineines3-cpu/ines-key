@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Console\Commands\AssignAnnualWellnessLeaveCredits;
 use App\Policies\ActivityPolicy;
 use BezhanSalleh\FilamentShield\Facades\FilamentShield;
 use Filament\Tables\Columns\Column;
@@ -23,7 +24,9 @@ class AppServiceProvider extends ServiceProvider
 
     public function register(): void
     {
-        //
+        $this->commands([
+            AssignAnnualWellnessLeaveCredits::class,
+        ]);
     }
 
     public function boot(): void

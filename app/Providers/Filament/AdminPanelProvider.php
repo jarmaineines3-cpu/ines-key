@@ -4,6 +4,7 @@ namespace App\Providers\Filament;
 
 use App\Filament\Resources\Employees\EmployeeResource;
 use App\Filament\Resources\Items\ItemResource;
+use App\Filament\Resources\Leaves\LeaveResource;
 use App\Filament\Resources\Positions\PositionResource;
 use App\Filament\Resources\Schools\SchoolResource;
 use App\Filament\Resources\Suppliers\SupplierResource;

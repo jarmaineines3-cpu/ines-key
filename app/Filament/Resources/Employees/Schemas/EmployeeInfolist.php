@@ -9,6 +9,62 @@ use Illuminate\Support\Str;
 
 class EmployeeInfolist
 {
+    public static function getLeaveSummary($record): ?string
+    {
+        $leaveTypes = ['vacation_leave', 'sick', 'wellness', 'forced', 'terminal', 'special_privilege', 'maternity', 'solo_parent', 'study', 'vawc', 'rehabilitation_privilege', 'special_emergency_calamity_leave', 'adoption', 'leave'];
+        $rows = [];
+
+        foreach ($leaveTypes as $leaveType) {
+            if ($leaveType === 'wellness') {
+                continue;
+            }
+
+            $credits = (float) $record->leaves()
+                ->where('leave_type', $leaveType)
+                ->sum('leave_credits');
+
+            if ($credits > 0) {
+                $rows[] = [
+                    'label' => ucfirst(str_replace('_', ' ', $leaveType)),
+                    'credits' => self::formatLeaveCredits($credits),
+                ];
+            }
+        }
+
+        $wellnessCredits = (float) $record->leaves()
+            ->where('leave_type', 'wellness')
+            ->sum('leave_credits');
+
+        if ($wellnessCredits > 0) {
+            $rows[] = [
+                'label' => 'Wellness',
+                'credits' => self::formatLeaveCredits($wellnessCredits),
+            ];
+        } else {
+            $rows[] = [
+                'label' => 'Wellness',
+                'credits' => self::formatLeaveCredits(5),
+            ];
+        }
+
+        if (empty($rows)) {
+            return null;
+        }
+
+        $tableRows = implode('', array_map(function ($row) {
+            return '<tr><td>' . e($row['label']) . '</td><td style="text-align:right;">' . e($row['credits']) . '</td></tr>';
+        }, $rows));
+
+        return '<table style="width:100%; border-collapse:collapse;">' .
+            '<thead><tr><th style="text-align:left; padding:2px 4px;">Leave Type</th><th style="text-align:right; padding:2px 4px;">Credits</th></tr></thead>' .
+            '<tbody>' . $tableRows . '</tbody></table>';
+    }
+
+    private static function formatLeaveCredits(float $credits): string
+    {
+        return number_format($credits, 2, '.', '');
+    }
+
     public static function configure(Schema $schema): Schema
     {
         return $schema
@@ -76,6 +132,13 @@ class EmployeeInfolist
 
                         
                     }),
+                TextEntry::make('leave_summary')
+                    ->label('Leave Credits')
+                    ->placeholder('No leave credits recorded.')
+                    ->state(function ($record) {
+                        return self::getLeaveSummary($record);
+                    })
+                    ->html(),
 
             ]);
     }

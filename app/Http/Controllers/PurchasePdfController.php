@@ -21,6 +21,17 @@ class PurchasePdfController
         return $pdf->stream(sprintf('purchase-%s.pdf', $purchase->pr_no));
     }
 
+    public function viewAPR(Purchase $purchase): Response
+    {
+        $purchase->load(['purchaseItems.item', 'requester', 'approver']);
+
+        $pdf = Pdf::loadView('pdfs.APR', [
+            'purchase' => $purchase,
+        ]);
+
+        return $pdf->stream(sprintf('APR-%s.pdf', $purchase->pr_no."-".$purchase->purpose));
+    }
+
     public function viewPO(Purchase $purchase): Response
     {
         $purchase->load([

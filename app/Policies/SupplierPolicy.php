@@ -14,57 +14,57 @@ class SupplierPolicy
     
     public function viewAny(AuthUser $authUser): bool
     {
-        return $authUser->can('view_any_supplier');
+        return $authUser->can('view_any:supplier');
     }
 
     public function view(AuthUser $authUser, Supplier $supplier): bool
     {
-        return $authUser->can('view_supplier');
+        return $authUser->can('view:supplier');
     }
 
     public function create(AuthUser $authUser): bool
     {
-        return $authUser->can('create_supplier');
+        return $authUser->can('create:supplier');
     }
 
     public function update(AuthUser $authUser, Supplier $supplier): bool
     {
-        return $authUser->can('update_supplier');
+        return $authUser->can('update:supplier');
     }
 
     public function delete(AuthUser $authUser, Supplier $supplier): bool
     {
-        return $authUser->can('delete_supplier');
+        return $authUser->can('delete:supplier');
     }
 
     public function restore(AuthUser $authUser, Supplier $supplier): bool
     {
-        return $authUser->can('restore_supplier');
+        return $authUser->can('restore:supplier');
     }
 
     public function forceDelete(AuthUser $authUser, Supplier $supplier): bool
     {
-        return $authUser->can('force_delete_supplier');
+        return $authUser->can('force_delete:supplier');
     }
 
     public function forceDeleteAny(AuthUser $authUser): bool
     {
-        return $authUser->can('force_delete_any_supplier');
+        return $authUser->can('force_delete_any:supplier');
     }
 
     public function restoreAny(AuthUser $authUser): bool
     {
-        return $authUser->can('restore_any_supplier');
+        return $authUser->can('restore_any:supplier');
     }
 
     public function replicate(AuthUser $authUser, Supplier $supplier): bool
     {
-        return $authUser->can('replicate_supplier');
+        return $authUser->can('replicate:supplier');
     }
 
     public function reorder(AuthUser $authUser): bool
     {
-        return $authUser->can('reorder_supplier');
+        return $authUser->can('reorder:supplier');
     }
 
 }
